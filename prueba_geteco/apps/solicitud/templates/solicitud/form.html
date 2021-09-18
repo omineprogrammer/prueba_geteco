@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="post" xmlns="http://www.w3.org/1999/html">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="mb-3 fieldWrapper">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.errors %}
+                    <div class="text-danger">
+                        {% for error in field.errors %}
+                        <small><strong>{{ error|escape }}</strong></small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if field.help_text %}
+                <p class="help">{{ field.help_text|safe }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <hr>
+        <div class="row d-grid gap-2">
+            <button type="submit" class="btn btn-success" value="Save">Guardar</button>
+        </div>
+    </form>
+{% endblock %}

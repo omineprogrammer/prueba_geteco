@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% load tools %}
+
+{% block content %}
+    {% define object_list|fields_name_from_list as fields %}
+    <table class="table">
+      <thead>
+        <tr>
+            {% for field_name in fields %}
+            <th scope="col">{{ field_name|capfirst }}</th>
+            {% endfor %}
+            <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for obj in object_list %}
+        <tr>
+            {% for field_name in fields %}
+            <td>{{ obj | get_attr:field_name }}</td>
+            {% endfor %}
+            <td style="width: 5%">
+                <div class="row">
+                    <a class="col-5Z m-1 btn btn-danger shadow-none" role="button" href="{% url app_name|add:':'|add:model_name|add:'-delete' obj.id %}">
+                        <i class="bi bi-x-lg"></i>
+                    </a>
+                    <a class="col-5Z m-1 btn btn-warning shadow-none" role="button" href="{% url app_name|add:':'|add:model_name|add:'-update' obj.pk %}">
+                        <i class="bi bi-pencil-fill"></i>
+                    </a>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+{% endblock %}
+
+{% block adding %}
+    <div class="d-flex row justify-content-between">
+        <a class="btn btn-success shadow-none" role="button" href="{% url app_name|add:':'|add:model_name|add:'-add' %}">
+            <i class="bi bi-plus">Añadir {{ model_name }}</i>
+        </a>
+    </div>
+{% endblock %}
