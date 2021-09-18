@@ -12,6 +12,8 @@ class RegistroListView(BaseListView):
 class RegistroCreateView(BaseCreateView):
     model = Registro
     form_class = RegistroForm
+    success_url = reverse_lazy(
+        f'{model._meta.app_label}:{model._meta.verbose_name}-list')
 
 
 class RegistroUpdateView(BaseDetailView):
@@ -35,6 +37,9 @@ class CiudadListView(BaseListView):
 class CiudadCreateView(BaseCreateView):
     model = Ciudad
     form_class = CiudadForm
+    success_url = reverse_lazy(
+        f'{model._meta.app_label}:{model._meta.verbose_name}-list')
+
 
 
 class CiudadUpdateView(BaseDetailView):
@@ -58,6 +63,9 @@ class EmpresaListView(BaseListView):
 class EmpresaCreateView(BaseCreateView):
     model = Empresa
     form_class = EmpresaForm
+    success_url = reverse_lazy(
+        f'{model._meta.app_label}:{model._meta.verbose_name}-list')
+
 
 
 class EmpresaUpdateView(BaseDetailView):
