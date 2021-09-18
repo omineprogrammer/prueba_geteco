@@ -7,7 +7,7 @@ class Empresa(models.Model):
     nombre = models.CharField(max_length=128)
 
     def get_absolute_url(self):
-        return reverse('empresa-detail', kwargs={'pk': self.pk})
+        return reverse('solicitud:empresa-detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return f"{self.nombre}"
@@ -20,7 +20,7 @@ class Ciudad(models.Model):
     nombre = models.CharField(max_length=128)
 
     def get_absolute_url(self):
-        return reverse('ciudad-detail', kwargs={'pk': self.pk})
+        return reverse('solicitud:ciudad-detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return f"{self.nombre}"
@@ -43,7 +43,7 @@ class Registro(models.Model):
     fecha_solicitud = models.DateField(default=datetime.today)
 
     def get_absolute_url(self):
-        return reverse('registro:registro-detail', kwargs={'pk': self.pk})
+        return reverse('solicitud:registro-detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return f"{self.asunto}"
