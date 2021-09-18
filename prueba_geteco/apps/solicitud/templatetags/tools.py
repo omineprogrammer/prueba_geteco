@@ -15,7 +15,10 @@ def define(val=None): return val
 
 @register.filter
 def fields_name_from_list(obj_list):
-    return [f.name for f in obj_list[0]._meta.fields]
+    if obj_list:
+        return [f.name for f in obj_list[0]._meta.fields]
+    else:
+        return []
 
 
 @register.filter

@@ -10,7 +10,9 @@
             {% for field_name in fields %}
             <th scope="col">{{ field_name|capfirst }}</th>
             {% endfor %}
+            {% if fields %}
             <th>Acciones</th>
+            {% endif %}
         </tr>
       </thead>
       <tbody>
